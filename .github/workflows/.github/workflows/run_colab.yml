@@ -1,0 +1,23 @@
+name: Run Colab Notebook Daily
+
+on:
+  schedule:
+   
+    - cron: '0 8 * * *'
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Install Python dependencies
+      run: |
+        pip install nbconvert nbformat
+
+    - name: Run Jupyter Notebook
+      run: |
+        jupyter nbconvert --to notebook --execute path/to/Copy of Untitled0.ipynb
+      # מחליפים את 'path/to/your_notebook.ipynb' בנתיב של המחברת במאגר
